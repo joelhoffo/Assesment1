@@ -2,16 +2,16 @@
  
 int main()
 {
-	char message[100], ch;
-	int i, key;
+	char message[26], ch;
+	int k, key;
 	
 	printf("Enter a message to encrypt: ");
-	gets(message);
+	scanf("%s",message);
 	printf("Enter key: ");
 	scanf("%d", &key);
 	
-	for(i = 0; message[i] != '\0'; ++i){
-		ch = message[i];
+	for(k = 0; message[k] != '\0'; ++k){
+		ch = message[k];
 		
 		if(ch >= 'a' && ch <= 'z'){
 			ch = ch + key;
@@ -20,7 +20,7 @@ int main()
 				ch = ch - 'z' + 'a' - 1;
 			}
 			
-			message[i] = ch;
+			message[k] = ch;
 		}
 		else if(ch >= 'A' && ch <= 'Z'){
 			ch = ch + key;
@@ -29,7 +29,7 @@ int main()
 				ch = ch - 'Z' + 'A' - 1;
 			}
 			
-			message[i] = ch;
+			message[k] = ch;
 		}
 	}
 	
