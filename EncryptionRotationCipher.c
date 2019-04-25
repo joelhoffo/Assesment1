@@ -1,37 +1,31 @@
-#include <stdio.h>   //for printf and scanf satements
-int main()
+int EncryptUsingRotationCypher()
 {
-   int option;
- 
-   /*Displaing on screen*/
-   printf("Menu\n");
-   printf("1) Encyption using Ceaser Cipher\n");
-   printf("2) decyption using Ceaser Cipher\n");
-   printf("3) Encyption using Substitution Cipher\n");
-   printf("4) decyption using Substitution Cipher\n");
-   
- 
-   printf("\nChoose option:");
-   scanf("%d", &option);
- 
- 
-   /*Finding which option was asked for (my style of using brackets may be different than yours*/
-   if (option==1)
-   {
-      printf("You chose Encyption using Ceaser Cipher!\n");
-     
-   }
-   else if (option==2)
-   {
-      printf("You chose decyption using Ceaser Cipher!\n");
-   }
-   else if (option==3)
-   {
-      printf("You chose Encyption using Substitution Cipher!\n");
-   }
-   else if (option==4)
-   {
-      printf("You chose decyption using Substitution Cipher!\n");
-   }
-   return 0;
+    printf("\nYou chose Encyption using Ceaser Cipher!");
+    const int key = GetKey();
+    printf("\nData obtained from input.txt file");
+
+
+    GetStringFromFile(_unEncryptedText, "input.txt");
+    printf("\nUn-encrypted Message: %s", _unEncryptedText);
+    getchar();
+
+    int eof = 0;
+
+    for (int a = 0; _unEncryptedText[a] != 0; ++a)
+    {
+        eof = a;
+        const char unEncryptedChar = _unEncryptedText[a];
+        if (unEncryptedChar== ' ') 
+        _encryptedText[a] = unEncryptedChar;
+        else
+        //if (unEncryptedChar >= 'a' && unEncryptedChar <= 'z' 
+        //    || unEncryptedChar >= 'A' && unEncryptedChar <= 'Z')
+        _encryptedText[a] = unEncryptedChar + key;
+    }
+    for (int b = eof + 1; b < 1000; b++)
+        _encryptedText[b] = 0;
+
+
+    printf("\nEncrypted message: %s", _encryptedText);
+    return key;
 }
