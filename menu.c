@@ -1,33 +1,72 @@
-#include <stdio.h>   //for printf and scanf satements
+void ShowMenu()
+{
+    printf("\n\nMenu\n");
+    printf("1) Encyption using Ceaser Cipher\n");
+    printf("2) decyption using Ceaser Cipher\n");
+    printf("3) Encyption using Substitution Cipher\n");
+    printf("4) decyption using Substitution Cipher\n");
+    printf("5) decyption using Rotation Cipher with no key\n");
+    printf("6) decyption using Substitution Cipher with no key\n");
+    printf("X) Exit\n");
+}
+
+char GetUserOption()
+{
+    printf("\nChoose option:");
+    char option=getchar();
+    //scanf("%d", option);
+    return option;
+}
+
 int main()
 {
-   int option;
- 
-   /*Displaing on screen*/
-   printf("Menu\n");
-   printf("1) Encyption using Ceaser Cipher\n");
-   printf("1) decyption using Ceaser Cipher\n");
-   printf("2) Encyption using Substitution Cipher\n");
-   printf("1) decyption using Ceaser Cipher\n");
-   printf("3) \n");
- 
-   printf("chose option:");
-   scanf("%d", &option);
- 
- 
-   /*Finding which option was asked for (my style of using brackets may be different than yours*/
-   if (option==1)
-   {
-      printf("You chose Ceaser Cipher!\n");
-   }
-   else if (option==2)
-   {
-      printf("You chose Sub Cipher!\n");
-   }
-   else if (option==3)
-   {
-      printf("You chose program 3!\n");
-   }
- 
-   return 0;
+    int exit = 1;
+    do
+    {
+        ShowMenu();
+        const char option = GetUserOption();
+
+        switch (option)
+        {
+        case '1':
+        {
+            const int key = EncryptUsingRotationCypher();
+            DecrptUsingRotationCypher(key);
+            break;
+        }
+
+        case '2':
+            DecrptUsingRotationCypher2();
+            break;
+
+        case '3':
+            EncrptUsingSubstitutionCypher();
+            break;
+
+        case '4':
+            DecrptUsingSubstitutionCypher();
+            break;
+
+        case '5':
+            DescryptUsingRotationCipherWithNoKey();
+            break;
+
+        case '6':
+            DecryptUsingSubstitionCipherWithNoKey();
+            break;
+
+        case 'x':
+        case 'X':
+        {
+             printf("\n\nThe End\n\n");
+            exit = 1;
+            break;
+        }
+
+        default:
+            printf("No valid Entry!\n");
+            break;
+        }
+    } while (exit == 0);
+    return 0;
 }
