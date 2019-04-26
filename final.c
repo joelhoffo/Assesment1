@@ -84,7 +84,7 @@ void DecrptUsingRotationCypher(int key)
 
 void DecrptUsingRotationCypher2()
 {
-    printf("\nYou chose decyption using Ceaser Cipher!\n");
+    printf("\nYou chose decyption using Rotation Cipher!\n");
     printf("\nPut value from Encypted code in decrypt.txt\n");
     printf("\nText obtained from decrypt.txt\n");
 
