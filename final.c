@@ -2,6 +2,10 @@
 #include <string.h>
 #include <stdlib.h>  // needed for getchar and putchar for readind stdin and stdout
 
+//Joel hoffmann 
+//c3324574
+//Assesment 1 Engg1003
+
 
 char _encryptedText[1000];
 char _unEncryptedText[1000];
@@ -29,7 +33,7 @@ int GetKey()
 
 int EncryptUsingRotationCypher()
 {
-    printf("\nYou chose Encyption using Ceaser Cipher!");
+    printf("\nYou chose Encyption using Rotation Cipher!");
     const int key = GetKey();
     printf("\nData obtained from input.txt file");
 
@@ -70,8 +74,6 @@ void DecrptUsingRotationCypher(int key)
         _unEncryptedText[a] = encryptedChar;
         else
         
-        //if (encryptedChar >= 'a' && encryptedChar <= 'z' 
-        //    || encryptedChar >= 'A' && encryptedChar <= 'Z')
         _unEncryptedText[a] = encryptedChar - key;
     }
     for (int b = eof + 1; b < 1000; b++)
@@ -96,31 +98,23 @@ void DecrptUsingRotationCypher2()
 
 void EncrptUsingSubstitutionCypher()
 {
-    printf("You chose Encyption using Substitution Cipher!\n");
+    
     {
         {
-            printf("\nText obtained from input.txt file\n");
+    printf("\nYou chose Encyption using Substitution Cipher!\n");
+    printf("\nPut text for Encyption in input.txt\n");
+    printf("\nText obtained from input.txt\n");
 
-            FILE* fp = fopen("input.txt", "r");
-            int ch = getc(fp);
-            while (ch != EOF)
-            {
-                /* display contents of file on screen */
-                putchar(ch);
 
-                ch = getc(fp);
-            }
-            getchar();
-
+    GetStringFromFile(_encryptedText, "input.txt");
+    printf("%s",_encryptedText);
             //creates a char string up to 1000 values and store messages prompting user to enter message
             const int h = 1000;
-            char Encypted[h];
-            printf("\nEnter message to be encripted:");
-            scanf("%[^\n]s", Encypted);
+            char Encypted[100]="How much wood would a woodchuck chuck";
 
-            //allows user to enter a substitution for 26 letters of the alphabet and stores it in the value of text//
+           //allows user to enter a substitution for 26 letters of the alphabet and stores it in the value of text 
             char text[h];
-            printf("Enter substitution of cipher-26 consecutive letters of the alphabet:\n");
+            printf("\nEnter substitution of cipher-26 consecutive letters of the alphabet:\n");
             scanf("%s", text);
 
             //minus 32 to all lower case values to make them uppercase ACSSI values
@@ -200,7 +194,7 @@ void EncrptUsingSubstitutionCypher()
                     break;
                 case 90: Encypted[h] = text[25];
                     break;
-                defalut: Encypted[h] = Encypted[h];
+                default: Encypted[h] = Encypted[h];
                 }
             }
 
@@ -211,31 +205,23 @@ void EncrptUsingSubstitutionCypher()
 }
 
 void DecrptUsingSubstitutionCypher()
-{
-    printf("You chose decyption using Substitution Cipher!\n");
-    {
-        {
-            printf("\nText obtained from decryptsub.txt file\n");
+   {
+       
+       {
+     printf("\nYou chose decyption using Substitution Cipher!\n");
+    printf("\nPut value from Encypted code in decryptnokey.txt\n");
+    printf("\nText obtained from decryptsub.txt\n");
 
-            FILE* fp = fopen("decryptsub.txt", "r");
-            int ch = getc(fp);
-            while (ch != EOF)
-            {
-                /* display contents of file on screen */
-                putchar(ch);
 
-                ch = getc(fp);
-            }
-            getchar();
-            printf("\ncopy text from file");
+    GetStringFromFile(_encryptedText, "decryptsub.txt");
+    printf("%s",_encryptedText);
             //creates a char string up to 1000 values and store messages prompting user to enter message
             const int j = 1000;
-            char Encrypted[j];
-            printf("\nEnter message to be Encrypted:");
-            scanf("%[^\n]s", Encrypted);
+            char Encrypted[1000]="IGV DXEI VGGR VGXSR Q VGGREIXEA EIXEA";
 
-           //allows user to enter a substitution for 26 letters of the alphabet and stores it in the value of text           
-            printf("Enter substitution of cipher-26 consecutive letters of the alphabet:\n");
+           //allows user to enter a substitution for 26 letters of the alphabet and stores it in the value of text 
+            char text[j];
+            printf("\nEnter substitution of cipher-26 consecutive letters of the alphabet:\n");
             scanf("%s", text);
 
             //plus 32 to all upper case values to make them lowercase ACSSI values
@@ -315,14 +301,14 @@ void DecrptUsingSubstitutionCypher()
                     break;
                 case 122: Encrypted[j] = text[4];
                     break;
-                fail: Encrypted[j] = Encrypted[j];
+                default: Encrypted[j] = Encrypted[j];
                 }
             }
             //*prints Encrypted message*//
             printf("%s", Encrypted);
         }
     }
-}
+
 
 void DescryptUsingRotationCipherWithNoKey()
 {
@@ -365,16 +351,22 @@ void DescryptUsingRotationCipherWithNoKey()
 
 void DecryptUsingSubstitionCipherWithNoKey()
 {
+    printf("\nYou chose decyption using Rotation Cipher with no key!\n");
+    printf("\nPut value from Encypted code in decryptnokeysub.txt\n");
+    printf("\nText obtained from decryptnokeysub.txt\n");
+
+
+   GetStringFromFile(_encryptedText, "decryptnokeysub.txt");
+    printf("\nencrypted Message: %s", _encryptedText);
+    getchar();
     //creates a char string up to 1000 values and store messages prompting user to enter message
-    const int j = 1000;
-    char Encrypted[j];
-    printf("Enter message to be Encrypted:"); 
-    scanf("%[^\n]s", Encrypted); //allows input from user 
+    //const int j = 1000;
+    char decryptedText[1000];
 
     //allows user to enter a substitution for 26 letters of the alphabet and stores it in the value of text 
-    char text[j];
-    printf("Enter substitution of cipher 26 consecutive letters of the alphabet:\n");
-    scanf("%s", text);
+    char text[26]={'q','w','e','r','t','y','u','i','o','p','a','s','d','f','g','h','j','k','l','z','x','c','v','b','n','m'};
+    
+    
 
    //plus 32 to all upper case values to make them lowercase ACSSI values
     for (int j = 0; j < strlen(text); j++)
@@ -388,84 +380,89 @@ void DecryptUsingSubstitionCipherWithNoKey()
         else text[j] = text[j];
     }
 
-    for (int j = 0; j < strlen(Encrypted); j++) //strlen calculates the length of the string so the value of the array h has to be less then the value stored in Encypted
+int eLen=strlen(_encryptedText);
+    for (int j = 0; j < eLen; j++) //strlen calculates the length of the string so the value of the array h has to be less then the value stored in Encypted
     {
+        char ej =_encryptedText[j];
         //applies if statment to every letter in the message stored in Encrypted
 
-        if (Encrypted[j] >= 65 && Encrypted[j] <= 90)
+        if (ej >= 65 && ej <= 90)
         {
             //converts lower case letters in message to upper case
-            Encrypted[j] = Encrypted[j] + 32;
+            char dj=ej+32;
+            ej = dj;
         }
+//        printf("%s", ej);
 
         //Encrypts message stored in Encypted by substituting values inputed by user
         //switch statement goes through every value and substitutes users input
-        switch (Encrypted[j])
+        switch (ej)
         {
-        case 97: Encrypted[j] = text[17];
+        case 'a': decryptedText[j] = text[17];
             break;
-        case 98: Encrypted[j] = text[20];
+        case 'b': decryptedText[j] = text[2];
             break;
-        case 99: Encrypted[j] = text[22];
+        case 'c': decryptedText[j] = text[7];
             break;
-        case 100: Encrypted[j] = text[25];
+        case 'd': decryptedText[j] = text[16];
             break;
-        case 101: Encrypted[j] = text[21];
+        case 'e': decryptedText[j] = text[6];
             break;
-        case 102: Encrypted[j] = text[24];
+        case 'f': decryptedText[j] = text[4];
             break;
-        case 103: Encrypted[j] = text[8];
+        case 'g': decryptedText[j] = text[22];
             break;
-        case 104: Encrypted[j] = text[9];
+        case 'h': decryptedText[j] = text[15];
             break;
-        case 105: Encrypted[j] = text[15];
+        case 'i': decryptedText[j] = text[9];
             break;
-        case 106: Encrypted[j] = text[0];
+        case 'j': decryptedText[j] = text[11];
             break;
-        case 107: Encrypted[j] = text[3];
+        case 'k': decryptedText[j] = text[24];
             break;
-        case 108: Encrypted[j] = text[11];
+        case 'l': decryptedText[j] = text[21];
             break;
-        case 109: Encrypted[j] = text[19];
+        case 'm': decryptedText[j] = text[13];
             break;
-        case 110: Encrypted[j] = text[5];
+        case 'n': decryptedText[j] = text[10];
             break;
-        case 111: Encrypted[j] = text[7];
+        case 'o': decryptedText[j] = text[25];
             break;
-        case 112: Encrypted[j] = text[16];
+        case 'p': decryptedText[j] = text[1];
             break;
-        case 113: Encrypted[j] = text[10];
+        case 'q': decryptedText[j] = text[14];
             break;
-        case 114: Encrypted[j] = text[12];
+        case 'r': decryptedText[j] = text[12];
             break;
-        case 115: Encrypted[j] = text[18];
+        case 's': decryptedText[j] = text[0];
             break;
-        case 116: Encrypted[j] = text[2];
+        case 't': decryptedText[j] = text[19];
             break;
-        case 117: Encrypted[j] = text[14];
+        case 'u': decryptedText[j] = text[20];
             break;
-        case 118: Encrypted[j] = text[1];
+        case 'v': decryptedText[j] = text[5];
             break;
-        case 119: Encrypted[j] = text[23];
+        case 'w': decryptedText[j] = text[23];
             break;
-        case 120: Encrypted[j] = text[6];
+        case 'x': decryptedText[j] = text[3];
             break;
-        case 121: Encrypted[j] = text[13];
+        case 'y': decryptedText[j] = text[8];
             break;
-        case 122: Encrypted[j] = text[4];
+        case 'z': decryptedText[j] = text[18];
             break;
-        Noresult: Encrypted[j] = Encrypted[j];
+
+        default: decryptedText[j] = _encryptedText[j];
         }
-        //*prints Encrypted message*//
-        printf("%s", Encrypted);
     }
+        //*prints Encrypted message*//
+        printf("\nDecrypted text: %s", decryptedText);
 }
 
 void ShowMenu()
 {
     printf("\n\nMenu\n");
-    printf("1) Encyption using Ceaser Cipher\n");
-    printf("2) decyption using Ceaser Cipher\n");
+    printf("1) Encyption using Rotation Cipher\n");
+    printf("2) decyption using Rotation Cipher\n");
     printf("3) Encyption using Substitution Cipher\n");
     printf("4) decyption using Substitution Cipher\n");
     printf("5) decyption using Rotation Cipher with no key\n");
