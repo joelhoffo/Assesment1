@@ -11,7 +11,7 @@ int main()
    printf("4) decyption using Substitution Cipher\n");
    
  
-   printf("\nChoose option:");
+   printf("\nChoose option:"); 
    scanf("%d", &option);
  
  
