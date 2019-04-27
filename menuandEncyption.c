@@ -18,39 +18,36 @@ int main()
    /*Finding which option was asked for (my style of using brackets may be different than yours*/
    if (option==1)
    {
-      printf("You chose Encyption using Ceaser Cipher!\n");
-    char message[26], ch;
-	int k, key;
+     EncryptUsingRotationCypher ()
+{
+  printf ("\nYou chose Encryption using Rotation Cipher!");
+  const int key = GetKey ();
+  printf ("\nData obtained from input.txt file");
 
-	printf("Enter a message to encrypt: ");
-	scanf(" %[^\n]s",message);
-	printf("Enter key: ");
-	scanf("%d", &key);
 
-	for(k = 0; message[k] != '\0'; ++k){
-		ch = message[k];
+  GetStringFromFile (_unEncryptedText, "input.txt");	//reads txt from inpiut.txt file
+  printf ("\nUn-encrypted Message: %s", _unEncryptedText);
+  getchar ();
 
-		if(ch >= 'a' && ch <= 'z'){
-			ch = ch + key;
+  int eof = 0;
 
-			if(ch > 'z'){
-				ch = ch - 'z' + 'a' - 1;
-			}
+  for (int a = 0; _unEncryptedText[a] != 0; ++a)	//initial 0 values , incremented 
+    {
+      eof = a;
+      const char unEncryptedChar = _unEncryptedText[a];
+      if (unEncryptedChar == ' ')	// allows for spaces in text 
+	_encryptedText[a] = unEncryptedChar;
+      else
+	//if (unEncryptedChar >= 'a' && unEncryptedChar <= 'z' 
+	//    || unEncryptedChar >= 'A' && unEncryptedChar <= 'Z')
+	_encryptedText[a] = unEncryptedChar + key;	//adds key to inputed value to encrypt
+    }
+  for (int b = eof + 1; b < 1000; b++)	//stops all 1000 char values being assigned memory
+    _encryptedText[b] = 0;
 
-			message[k] = ch;
-		}
-		else if(ch >= 'A' && ch <= 'Z'){
-			ch = ch + key;
 
-			if(ch > 'Z'){
-				ch = ch - 'Z' + 'A' - 1;
-			}
-
-			message[k] = ch;
-		}
-	}
-
-	printf("Encrypted message: %s", message);
+  printf ("\nEncrypted message: %s", _encryptedText);
+  return key;
 }
   
    else if (option==2)
