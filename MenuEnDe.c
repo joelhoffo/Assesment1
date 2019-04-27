@@ -18,80 +18,61 @@ int main()
    /*Finding which option was asked for (my style of using brackets may be different than yours*/
    if (option==1)
    {
-      printf("You chose Encyption using Ceaser Cipher!\n");
-    char input[26], AmountC;
-	int A;
-	int key;
-	
-	printf("Enter a message to encrypt: ");
-	scanf(" %[^\n]s",input);
-	printf("Enter key: ");
-	scanf("%d", &key);
+      EncryptUsingRotationCypher ()
+{
+  printf ("\nYou chose Encryption using Rotation Cipher!");
+  const int key = GetKey ();
+  printf ("\nData obtained from input.txt file");
 
-	for(A = 0; input[A] != '\0'; ++A){
-		AmountC = input[A];
 
-		if(AmountC >= 'a' && AmountC <= 'z'){
-			AmountC = AmountC + key;
+  GetStringFromFile (_unEncryptedText, "input.txt");	//reads txt from inpiut.txt file
+  printf ("\nUn-encrypted Message: %s", _unEncryptedText);
+  getchar ();
 
-			if(AmountC > 'z'){
-				AmountC = AmountC - 'z' + 'a' - 1;
-			}
+  int eof = 0;
 
-			input[A] = AmountC;
-		}
-		else if(AmountC >= 'A' && AmountC <= 'Z'){
-			AmountC = AmountC + key;
+  for (int a = 0; _unEncryptedText[a] != 0; ++a)	//initial 0 values , incremented 
+    {
+      eof = a;
+      const char unEncryptedChar = _unEncryptedText[a];
+      if (unEncryptedChar == ' ')	// allows for spaces in text 
+	_encryptedText[a] = unEncryptedChar;
+      else
+	//if (unEncryptedChar >= 'a' && unEncryptedChar <= 'z' 
+	//    || unEncryptedChar >= 'A' && unEncryptedChar <= 'Z')
+	_encryptedText[a] = unEncryptedChar + key;	//adds key to inputed value to encrypt
+    }
+  for (int b = eof + 1; b < 1000; b++)	//stops all 1000 char values being assigned memory
+    _encryptedText[b] = 0;
 
-			if(AmountC > 'Z'){
-				AmountC = AmountC - 'Z' + 'A' - 1;
-			}
 
-			input[A] = AmountC;
-		}
-	}
-
-	printf("Encrypted message: %s", input);
+  printf ("\nEncrypted message: %s", _encryptedText);
+  return key;
 }
+
+
   
    else if (option==2)
-   {
-      printf("You chose decyption using Ceaser Cipher!\n");
+   { void
+DecrptUsingRotationCypher (int key) //Function for decryption using key 
+{
+  int eof = 0;
+  for (int a = 0; _encryptedText[a] != 0; ++a) //initial 0 values , incremented 
+    {
+      eof = a;
+      const char encryptedChar = _encryptedText[a]; //array that goes through inputted a values in encrypted text
+      if (encryptedChar == ' ') //allows for spaces 
+	_unEncryptedText[a] = encryptedChar;
+      else
 
-	char input[100], AmountC;
-	int A, key;
-	
-	printf("Enter a message to decrypt: ");
-	scanf(" %[^\n]s",input);
-	printf("Enter key: ");
-	scanf("%d", &key);
-	
-	for(A = 0; input[A] != '\0'; ++A){
-		AmountC = input[A];
-		
-		if( AmountC >= 'a' && AmountC <= 'z'){
-			AmountC = AmountC - key;
-			
-			if(AmountC < 'a'){
-				AmountC = AmountC + 'z' - 'a' + 1;
-			}
-			
-			input[A] = AmountC;
-		}
-		else if(AmountC >= 'A' && AmountC <= 'Z'){
-			AmountC = AmountC - key;
-			
-			if(AmountC < 'A'){
-				AmountC = AmountC + 'Z' - 'A' + 1;
-			}
-			
-			input[A] = AmountC;
-		}
-	}
-	
-	printf("Decrypted message: %s", input);
-	
+	_unEncryptedText[a] = encryptedChar - key; //Encrypts tetx 
+    }
+  for (int b = eof + 1; b < 1000; b++) //Stops 1000 character values being assigned if empty 
+    _unEncryptedText[b] = 0;
+
+  printf ("\nDecrypted message: %s", _unEncryptedText);
 }
+     
       
    else if (option==3)
    {
