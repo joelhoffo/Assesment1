@@ -117,7 +117,7 @@ EncrptUsingSubstitutionCypher ()
 	      Encrypted[h] = text[22];
 	      break;
 	    case 88:
-	      Encrypted[h] = text[23];
+	      Encrypted[h] = text[23]; 
 	      break;
 	    case 89:
 	      Encrypted[h] = text[24];
