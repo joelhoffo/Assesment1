@@ -13,14 +13,14 @@ char _unEncryptedText[1000];
 void
 GetStringFromFile (char input[26], const char *fileName)	//fuction to read txt from files 
 {
-  FILE *fp = fopen (fileName, "r");
-  int ch = getc (fp), i = 0;
+  FILE *fp = fopen (fileName, "r");    //Pointer to file and "r" reads from the file
+  int ch = getc (fp), i = 0; //Initally equal to zero 
   while (ch != EOF)
     {
-      input[i++] = ch;
+      input[i++] = ch; //Increments values in file 
       ch = getc (fp);
     }
-  for (; i < 26; i++)
+  for (; i < 26; i++)  // values that unkown are made to equal 0
     input[i] = 0;
 }
 
@@ -28,7 +28,7 @@ int
 GetKey ()			//Function to allow user to input key
 {
   int key;
-  printf ("\nEnter key: ");
+  printf ("\nEnter key: ");  //Prints text to screen
   scanf ("%d", &key);
   return key;
 }
@@ -36,13 +36,13 @@ GetKey ()			//Function to allow user to input key
 int
 EncryptUsingRotationCypher ()
 {
-  printf ("\nYou chose Encryption using Rotation Cipher!");
+  printf ("\nYou chose Encryption using Rotation Cipher!"); //Prints text to screen
   const int key = GetKey ();
-  printf ("\nData obtained from input.txt file");
+  printf ("\nData obtained from input.txt file"); //Prints text to screen
 
 
   GetStringFromFile (_unEncryptedText, "input.txt");	//reads txt from inpiut.txt file
-  printf ("\nUn-encrypted Message: %s", _unEncryptedText);
+  printf ("\nUn-encrypted Message: %s", _unEncryptedText); //Prints text to screen
   getchar ();
 
   int eof = 0;
@@ -62,7 +62,7 @@ EncryptUsingRotationCypher ()
     _encryptedText[b] = 0;
 
 
-  printf ("\nEncrypted message: %s", _encryptedText);
+  printf ("\nEncrypted message: %s", _encryptedText); //Prints text to screen
   return key;
 }
 
@@ -83,15 +83,15 @@ DecrptUsingRotationCypher (int key) //Function for decryption using key
   for (int b = eof + 1; b < 1000; b++) //Stops 1000 character values being assigned if empty 
     _unEncryptedText[b] = 0;
 
-  printf ("\nDecrypted message: %s", _unEncryptedText);
+  printf ("\nDecrypted message: %s", _unEncryptedText); //Prints text to screen from value of _unEncryptedText
 }
 
 void
 DecrptUsingRotationCypher2 ()
 {
-  printf ("\nYou chose Decryption using Rotation Cipher!\n");
-  printf ("\nPut value from Encrypted code in decrypt.txt\n");
-  printf ("\nText obtained from decrypt.txt\n");
+  printf ("\nYou chose Decryption using Rotation Cipher!\n"); //Prints text to screen
+  printf ("\nPut value from Encrypted code in decrypt.txt\n"); //Prints text to screen
+  printf ("\nText obtained from decrypt.txt\n");//Prints text to screen
 
 
   GetStringFromFile (_encryptedText, "decrypt.txt");
@@ -106,12 +106,12 @@ EncrptUsingSubstitutionCypher ()
 {
   {
     {
-      printf ("\nYou chose Encryption using Substitution Cipher!\n");
-      printf ("\nPut text for Encryption in input.txt\n");
-      printf ("\nText obtained from input.txt\n");
+      printf ("\nYou chose Encryption using Substitution Cipher!\n"); //Prints text to screen
+      printf ("\nPut text for Encryption in input.txt\n"); //Prints text to screen
+      printf ("\nText obtained from input.txt\n"); //Prints text to screen
 
 
-      GetStringFromFile (_encryptedText, "input.txt");
+      GetStringFromFile (_encryptedText, "input.txt"); //reads txt from input.txt file
       printf ("%s", _encryptedText);
       //creates a char string up to 1000 values and store messages prompting user to enter message
       const int h = 1000;
@@ -375,12 +375,12 @@ DecrptUsingSubstitutionCypher ()	//Function for Decryption
 void
 DescryptUsingRotationCipherWithNoKey ()
 {
-  printf ("\nYou chose Decryption using Rotation Cipher with no key!\n");
-  printf ("\nPut value from Encrypted code in decryptnokey.txt\n");
-  printf ("\nText obtained from decryptnokey.txt\n");
+  printf ("\nYou chose Decryption using Rotation Cipher with no key!\n"); //Prints text to screen
+  printf ("\nPut value from Encrypted code in decryptnokey.txt\n"); //Prints text to screen
+  printf ("\nText obtained from decryptnokey.txt\n"); //Prints text to screen
 
 
-  GetStringFromFile (_encryptedText, "decryptnokey.txt");
+  GetStringFromFile (_encryptedText, "decryptnokey.txt"); //Read text from decryptnokey.txt
   printf ("%s", _encryptedText);
 
   char input[1000] =
@@ -416,12 +416,12 @@ DescryptUsingRotationCipherWithNoKey ()
 void
 DecryptUsingSubstitionCipherWithNoKey ()
 {
-  printf ("\nYou chose Decryption using Rotation Cipher with no key!\n");
-  printf ("\nPut value from Encrypted code in decryptnokeysub.txt\n");
-  printf ("\nText obtained from decryptnokeysub.txt\n");
+  printf ("\nYou chose Decryption using Rotation Cipher with no key!\n"); //Prints text to screen
+  printf ("\nPut value from Encrypted code in decryptnokeysub.txt\n"); //Prints text to screen
+  printf ("\nText obtained from decryptnokeysub.txt\n"); //Prints text to screen
 
 
-  GetStringFromFile (_encryptedText, "decryptnokeysub.txt");
+  GetStringFromFile (_encryptedText, "decryptnokeysub.txt"); //Reads text from decryptnokeysub.txt 
   printf ("\nencrypted Message: %s", _encryptedText);
   getchar ();
   //creates a char string up to 1000 values and store messages prompting user to enter message
@@ -558,20 +558,20 @@ void
 ShowMenu () //User friendly menu
 {
   printf ("\n\nMenu\n");
-  printf ("1) Encryption using Rotation Cipher\n");
-  printf ("2) Decryption using Rotation Cipher\n");
-  printf ("3) Encryption using Substitution Cipher\n");
-  printf ("4) Decryption using Substitution Cipher\n");
-  printf ("5) Decryption using Rotation Cipher with no key\n");
-  printf ("6) Decryption using Substitution Cipher with no key\n");
+  printf ("1) Encryption using Rotation Cipher\n"); //Prints text to screen
+  printf ("2) Decryption using Rotation Cipher\n");//Prints text to screen
+  printf ("3) Encryption using Substitution Cipher\n");//Prints text to screen
+  printf ("4) Decryption using Substitution Cipher\n");//Prints text to screen
+  printf ("5) Decryption using Rotation Cipher with no key\n");//Prints text to screen
+  printf ("6) Decryption using Substitution Cipher with no key\n");//Prints text to screen
   printf ("X) Exit\n");
 }
 
 char
-GetUserOption ()
+GetUserOption () //Function allows user input to menu 
 {
-  printf ("\nChoose option:");
-  char option = getchar ();
+  printf ("\nChoose option:"); //Prints text to screen
+  char option = getchar (); //Takes user input
   //scanf("%d", option);
   return option;
 }
@@ -630,4 +630,3 @@ main ()
   while (exit == 0); //returns loop
   return 0;
 }
-
