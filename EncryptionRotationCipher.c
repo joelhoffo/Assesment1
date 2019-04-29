@@ -29,3 +29,4 @@ int EncryptUsingRotationCypher()
     printf("\nEncrypted message: %s", _encryptedText);
     return key;
 }
+ 
